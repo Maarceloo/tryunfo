@@ -40,10 +40,18 @@ class App extends React.Component {
       attr3,
       imge,
       raridade,
+      check,
       card,
     } = this.state;
-    card.push({ nome, descricao, attr1, attr2, attr3, imge, raridade });
+    card.push({ nome, descricao, attr1, attr2, attr3, imge, raridade, check });
+    console.log({ ...dados, card });
     this.setState({ ...dados, card });
+  };
+
+  checkTrunfo = () => {
+    const { card } = this.state;
+    card.some((it) => console.log(it.check));
+    return card.some((item) => item.check === true);
   };
 
   render() {
@@ -72,6 +80,7 @@ class App extends React.Component {
           }
         }
       }
+
       return false;
     };
     return (
@@ -90,6 +99,7 @@ class App extends React.Component {
             onInputChange={ this.dadosInput }
             isSaveButtonDisabled={ salvarButton() }
             onSaveButtonClick={ this.salvarCard }
+            hasTrunfo={ this.checkTrunfo() }
           />
         </div>
         <div>
