@@ -44,13 +44,11 @@ class App extends React.Component {
       card,
     } = this.state;
     card.push({ nome, descricao, attr1, attr2, attr3, imge, raridade, check });
-    console.log({ ...dados, card });
     this.setState({ ...dados, card });
   };
 
   checkTrunfo = () => {
     const { card } = this.state;
-    card.some((it) => console.log(it.check));
     return card.some((item) => item.check === true);
   };
 
