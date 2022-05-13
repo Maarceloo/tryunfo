@@ -75,13 +75,13 @@ class App extends React.Component {
               parseInt(attr1, 10) + parseInt(attr2, 10) + parseInt(attr3, 10)
               <= maxValue
             ) {
-              return true;
+              return false;
             }
           }
         }
       }
 
-      return false;
+      return true;
     };
     return (
       <div>
