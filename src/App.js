@@ -54,6 +54,24 @@ class App extends React.Component {
     return card.some((item) => item.check === true);
   };
 
+  baralho = () => {
+    const { card } = this.state;
+    return card.map((carta) => (
+      <div key={ carta.nome }>
+        <Card
+          cardName={ carta.nome }
+          cardDescription={ carta.descricao }
+          cardAttr1={ carta.attr1 }
+          cardAttr2={ carta.attr2 }
+          cardAttr3={ carta.Attr3 }
+          cardImage={ carta.imge }
+          cardRare={ carta.raridade }
+          cardTrunfo={ carta.check }
+        />
+      </div>
+    ));
+  }
+
   render() {
     const { nome, descricao, attr1, attr2, attr3, imge, raridade, check } = this.state;
     const salvarButton = () => {
@@ -113,6 +131,10 @@ class App extends React.Component {
             cardRare={ raridade }
             cardTrunfo={ check }
           />
+        </div>
+        <div>
+          <h2>Baralho</h2>
+          {this.baralho()}
         </div>
       </div>
     );
