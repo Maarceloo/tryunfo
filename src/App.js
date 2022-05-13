@@ -2,16 +2,27 @@ import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
 
+const dados = {
+  nome: '',
+  descricao: '',
+  attr1: '0',
+  attr2: '0',
+  attr3: '0',
+  imge: '',
+  raridade: 'normal',
+};
+
 class App extends React.Component {
   state = {
     nome: '',
     descricao: '',
-    attr1: '',
-    attr2: '',
-    attr3: '',
+    attr1: '0',
+    attr2: '0',
+    attr3: '0',
     imge: '',
-    raridade: '',
+    raridade: 'normal',
     check: false,
+    card: [],
   };
 
   dadosInput = ({ target }) => {
@@ -20,9 +31,24 @@ class App extends React.Component {
     this.setState({ [name]: value });
   };
 
+  salvarCard = () => {
+    const {
+      nome,
+      descricao,
+      attr1,
+      attr2,
+      attr3,
+      imge,
+      raridade,
+      card,
+    } = this.state;
+    card.push({ nome, descricao, attr1, attr2, attr3, imge, raridade });
+    this.setState({ ...dados, card });
+  };
+
   render() {
     const { nome, descricao, attr1, attr2, attr3, imge, raridade, check } = this.state;
-    const salvar = () => {
+    const salvarButton = () => {
       if (nome !== '' && descricao !== '' && imge !== '' && raridade !== '') {
         const max = 90;
         if (
@@ -62,7 +88,8 @@ class App extends React.Component {
             cardRare={ raridade }
             cardTrunfo={ check }
             onInputChange={ this.dadosInput }
-            isSaveButtonDisabled={ salvar() }
+            isSaveButtonDisabled={ salvarButton() }
+            onSaveButtonClick={ this.salvarCard }
           />
         </div>
         <div>

@@ -17,6 +17,8 @@ class Form extends React.Component {
       onInputChange,
       onSaveButtonClick,
     } = this.props;
+    console.log(isSaveButtonDisabled);
+    console.log(onSaveButtonClick);
     return (
       <form>
         <label htmlFor="nome">
