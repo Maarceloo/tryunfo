@@ -52,6 +52,11 @@ class App extends React.Component {
     return card.some((item) => item.check === true);
   };
 
+  // EXERCICIO 09
+  deletaCard = (elemento) => {
+    console.log(elemento);
+  };
+
   baralho = () => {
     const { card } = this.state;
     return card.map((carta) => (
@@ -66,9 +71,16 @@ class App extends React.Component {
           cardRare={ carta.raridade }
           cardTrunfo={ carta.check }
         />
+        <button
+          type="button"
+          data-testid="delete-button"
+          onClick={ this.deletaCard }
+        >
+          Excluir
+        </button>
       </div>
     ));
-  }
+  };
 
   render() {
     const { nome, descricao, attr1, attr2, attr3, imge, raridade, check } = this.state;
