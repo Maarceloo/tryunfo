@@ -4,7 +4,7 @@ import Form from './components/Form';
 
 class App extends React.Component {
   state = {
-    nome: 'xablau',
+    nome: '',
     descricao: '',
     attr1: '',
     attr2: '',
@@ -22,6 +22,32 @@ class App extends React.Component {
 
   render() {
     const { nome, descricao, attr1, attr2, attr3, imge, raridade, check } = this.state;
+    const salvar = () => {
+      if (nome !== '' && descricao !== '' && imge !== '' && raridade !== '') {
+        const max = 90;
+        if (
+          parseInt(attr1, 10) <= max
+          && parseInt(attr2, 10) <= max
+          && parseInt(attr3, 10) <= max
+        ) {
+          const min = 0;
+          if (
+            parseInt(attr1, 10) >= min
+            && parseInt(attr2, 10) >= min
+            && parseInt(attr3, 10) >= min
+          ) {
+            const maxValue = 210;
+            if (
+              parseInt(attr1, 10) + parseInt(attr2, 10) + parseInt(attr3, 10)
+              <= maxValue
+            ) {
+              return true;
+            }
+          }
+        }
+      }
+      return false;
+    };
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -36,6 +62,7 @@ class App extends React.Component {
             cardRare={ raridade }
             cardTrunfo={ check }
             onInputChange={ this.dadosInput }
+            isSaveButtonDisabled={ salvar() }
           />
         </div>
         <div>
